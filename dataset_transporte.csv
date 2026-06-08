@@ -1,0 +1,10 @@
+origen,destino,distancia_km,hora_pico,tiempo_real_min
+Portal Norte,Calle 100,4.0,1,8
+Calle 100,Calle 72,3.5,0,6
+Calle 72,Calle 26,2.8,0,5
+Calle 26,Portal Sur,5.0,1,12
+Portal Norte,Calle 72,6.5,1,14
+Calle 100,Calle 26,4.2,0,7
+Calle 72,Calle 100,3.5,0,6
+Calle 26,Avenida Jiménez,1.5,1,11
+Avenida Jiménez,Calle 26,1.8,0,7
