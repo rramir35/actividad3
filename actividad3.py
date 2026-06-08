@@ -8,13 +8,10 @@ import matplotlib.pyplot as plt
 from sklearn.tree import plot_tree
 from datetime import datetime
 
-# ============================================
 # 1. CREAR DATASET (basado en el sistema de transporte)
-# ============================================
-print("="*50)
+
 print("🚍 ACTIVIDAD 3 - APRENDIZAJE SUPERVISADO")
 print(f"📅 Ejecutado: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-print("="*50)
 
 # Datos basados en las conexiones reales de la Actividad 2
 datos = {
@@ -33,12 +30,10 @@ print(df)
 df.to_csv("dataset_transporte.csv", index=False)
 print("\n✅ Dataset guardado como 'dataset_transporte.csv'")
 
-# ============================================
 # 2. DESCRIPCIÓN DE LOS DATOS
-# ============================================
-print("\n" + "="*50)
+
 print("📋 DESCRIPCIÓN DE LOS DATOS:")
-print("="*50)
+
 print(f"- Número de registros: {len(df)}")
 print(f"- Características: origen, destino, distancia_km, hora_pico")
 print(f"- Variable objetivo: tiempo_real_min (minutos)")
@@ -46,9 +41,9 @@ print("- Tipo de problema: Regresión (predecir tiempo de viaje)")
 print("\nEstadísticas descriptivas:")
 print(df.describe())
 
-# ============================================
+
 # 3. MODELO DE APRENDIZAJE SUPERVISADO
-# ============================================
+
 # Codificar variables categóricas (origen y destino)
 origenes = {est: i for i, est in enumerate(df["origen"].unique())}
 destinos = {est: i for i, est in enumerate(df["destino"].unique())}
@@ -67,11 +62,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 modelo = DecisionTreeRegressor(max_depth=3, random_state=42)
 modelo.fit(X_train, y_train)
 
-print("\n" + "="*50)
-print("🤖 MODELO ENTREÑADO: Árbol de Decisión")
-print("="*50)
-print(f"- Precisión en entrenamiento: {modelo.score(X_train, y_train):.2f}")
-print(f"- Precisión en prueba: {modelo.score(X_test, y_test):.2f}")
+print("🤖 MODELO ENTRENADO: Árbol de Decisión")
+
+print(f"- Puntaje en entrenamiento (R²): {modelo.score(X_train, y_train):.2f}")
+print(f"- Puntaje en prueba (R²): {modelo.score(X_test, y_test):.2f}")
 
 # Predicciones
 y_pred = modelo.predict(X_test)
@@ -82,12 +76,10 @@ print(f"\n📈 MÉTRICAS DE RENDIMIENTO:")
 print(f"- Error absoluto medio (MAE): {mae:.2f} minutos")
 print(f"- Coeficiente R²: {r2:.2f}")
 
-# ============================================
+
 # 4. PRUEBAS REALIZADAS
-# ============================================
-print("\n" + "="*50)
+
 print("🔍 PRUEBAS REALIZADAS:")
-print("="*50)
 
 # Prueba 1: Predicción con datos existentes
 print("\n✅ Prueba 1 - Predicción con datos de entrenamiento:")
@@ -127,9 +119,9 @@ print(f"   Hora valle: {tiempo_valle:.1f} minutos")
 print(f"   Hora pico: {tiempo_pico:.1f} minutos")
 print(f"   Diferencia: {tiempo_pico - tiempo_valle:.1f} minutos adicionales")
 
-# ============================================
+
 # 5. GUARDAR VISUALIZACIÓN DEL ÁRBOL
-# ============================================
+
 plt.figure(figsize=(12, 8))
 plot_tree(modelo, feature_names=["origen_cod", "destino_cod", "distancia_km", "hora_pico"], 
           filled=True, rounded=True)
@@ -137,12 +129,11 @@ plt.title("Árbol de Decisión para Predicción de Tiempo de Viaje")
 plt.savefig("arbol_decision.png", dpi=150, bbox_inches="tight")
 print("\n📊 Visualización del árbol guardada como 'arbol_decision.png'")
 
-# ============================================
+
 # RESUMEN FINAL
-# ============================================
-print("\n" + "="*50)
+
 print("📋 RESUMEN DEL SISTEMA SUPERVISADO")
-print("="*50)
+
 print("✅ Algoritmo: Árbol de Decisión (Regresión)")
 print("✅ Dataset creado con 9 registros")
 print("✅ Variables: distancia_km, hora_pico")
@@ -151,5 +142,9 @@ print("✅ Métricas: MAE y R²")
 print("✅ Archivos generados:")
 print("   - dataset_transporte.csv")
 print("   - arbol_decision.png")
-print("="*50)
+print("\n📌 CONCLUSIÓN:")
+print("El modelo de aprendizaje supervisado permitió predecir tiempos de viaje")
+print("en el sistema de transporte utilizando variables como distancia y hora pico.")
+print("El árbol de decisión mostró resultados adecuados para el conjunto de datos propuesto.")
+
 print("🏁 FIN DE LA EJECUCIÓN")
